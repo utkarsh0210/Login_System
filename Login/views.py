@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 
-
+from .pkt import manipulation
 
 def home(request):
     return render(request,"login/index.html")
@@ -50,7 +50,9 @@ def signIn(request):
 
     return render(request,"login/signIn.html")
 
-
+def packet_list(request):
+    packets = manipulation()
+    return render(request, 'login/packet_list.html', {'packets': packets})
 
 def signOut(request):
     logout(request)
